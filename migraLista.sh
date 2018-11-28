@@ -37,10 +37,12 @@ else
         for i in $listas
 	do
 	    # Para cada lista devo pegar os membros desta lista e cadastrar na nova lista
-	    membros=$(zmprov gdlm $i|grep -v "^$|#|members")
+	    membros=$(zmprov gdlm $i|egrep -v "^$|#|members")
 	    listadomain=$(echo $i|awk -F "@" '{print $2}')
 	    nomelista=$(echo $i|awk -F "@" '{print $1}')
 	    novalistadomain=$nomelista+"@"+$novodominio
+	    # Será necessário criar a nova lista
+	    echo "Novo Dominio -> $novalistadomain"
 	    for x in $membros
 	    do
 	            # zmprov adlm lista membro
