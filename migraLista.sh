@@ -29,7 +29,7 @@ else
     listas=$(zmprov gadl $1)
     if [ -z $2 ]
     then 
-	    echo "Não foi informado o segundo paramentro, \n
+	    echo "Não foi informado o segundo paramentro,
 	    O segundo parametro deve ser o nome do novo dominio de e-mail"
     else
 	novodominio=$2
