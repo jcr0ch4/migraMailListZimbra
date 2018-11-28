@@ -40,7 +40,7 @@ else
 	    membros=$(zmprov gdlm $i|egrep -v "^$|#|members")
 	    listadomain=$(echo $i|awk -F "@" '{print $2}')
 	    nomelista=$(echo $i|awk -F "@" '{print $1}')
-	    novalistadomain=$nomelista+"@"+$novodominio
+	    novalistadomain=$nomelista"@"$novodominio
 	    # Será necessário criar a nova lista
 	    echo "Novo Dominio -> $novalistadomain"
 	    for x in $membros
