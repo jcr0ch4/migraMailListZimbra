@@ -46,7 +46,7 @@ else
 	    for x in $membros
 	    do
 	            # zmprov adlm lista membro
-		    zmprov adlm $i $x && echo "Adicionado a lista $i o membro $x ....   [ OK ]"||echo "Erro ao adicionar a lista $i o membro $x ....   [ Falhou ]"
+		    zmprov adlm $novalistadomain $x && echo "Adicionado a lista $novalistadomain o membro $x ....   [ OK ]"||echo "Erro ao adicionar a lista $i o membro $x ....   [ Falhou ]"
 	    done
 	
 	done 
