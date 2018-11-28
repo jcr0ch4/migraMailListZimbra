@@ -20,22 +20,32 @@
 #  MA 02110-1301, USA.
 
 # Listas de E-mail
-listas=$(zmprov gadl $1)
-novodominio=$2
 
-# Mensagens
+# Preciso verificar se os paramstros 1 e dois foram informados
+if [ -z $1 ]
+then
+    echo "Não foi informado o nome da lista de e-mail"
+else
+    listas=$(zmprov gadl $1)
+    if [ -z $2 ]
+    then 
+	    echo "Não foi informado o segundo paramentro o dominio da lista de e-mail"
+    else
+	novodominio=$2
 
-
-for i in $listas
-do
-    # Para cada lista devo pegar os membros desta lista e cadastrar na nova lista
-    membros=$(zmprov gdlm $i|grep -v "^$|#|members")
-    listadomain=$(echo $i|awk -F "@" '{print $2}')
-    nomelista=$(echo $i|awk -F "@" '{print $1}')
-    novalistadomain=$nomelista+"@"+$novodominio
-    for i in $membros
-    do
-# zmprov adlm lista membro
-    done
-
-done 
+        for i in $listas
+	do
+	    # Para cada lista devo pegar os membros desta lista e cadastrar na nova lista
+	    membros=$(zmprov gdlm $i|grep -v "^$|#|members")
+	    listadomain=$(echo $i|awk -F "@" '{print $2}')
+	    nomelista=$(echo $i|awk -F "@" '{print $1}')
+	    novalistadomain=$nomelista+"@"+$novodominio
+	    for x in $membros
+	    do
+	            # zmprov adlm lista membro
+		    zmprov adlm $i $x && echo "Adicionado a lista $i o membro $x ....   [ OK ]"||echo "Erro ao adicionar a lista $i o membro $x ....   [ Falhou ]"
+	    done
+	
+	done 
+    fi
+fi
